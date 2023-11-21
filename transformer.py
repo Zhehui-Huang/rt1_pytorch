@@ -182,7 +182,7 @@ class Transformer(nn.Module):
         ])
 
         self._token_emb = nn.Linear(input_token_emb_dim, feed_forward_size)
-        self._position_emb = nn.Embedding(max_seq_len, feed_forward_size)  # <--- 工夫が必要 ここだけBERTのようにする？
+        self._position_emb = nn.Embedding(max_seq_len, feed_forward_size)
         self._output_tokens = nn.Linear(feed_forward_size, vocab_size)
 
     # inputs: (bs, seq, emb_dim). emb_dim = vocab_size
