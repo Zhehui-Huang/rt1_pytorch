@@ -54,7 +54,7 @@ def bridge_step_map_fn(step):
     transformed_step['observation'] = {}
 
     transformed_step['observation']['image'] = tf.cast(tf.image.resize_with_pad(
-        step['observation']['image'], target_width=160, target_height=128), tf.uint8)
+        step['observation']['image'], target_width=320, target_height=256), tf.uint8)
     transformed_step['observation']['image'] = tf.transpose(transformed_step['observation']['image'], [2, 0, 1])
 
     transformed_step['observation']['natural_language_embedding'] = step['observation']['natural_language_embedding']
@@ -79,7 +79,7 @@ def toto_step_map_fn(step):
     transformed_step['observation'] = {}
 
     transformed_step['observation']['image'] = tf.cast(tf.image.resize_with_pad(
-        step['observation']['image'], target_width=160, target_height=128), tf.uint8)
+        step['observation']['image'], target_width=320, target_height=256), tf.uint8)
     transformed_step['observation']['image'] = tf.transpose(transformed_step['observation']['image'], [2, 0, 1])
 
     transformed_step['observation']['natural_language_embedding'] = step['observation']['natural_language_embedding']

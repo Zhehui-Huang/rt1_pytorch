@@ -346,8 +346,7 @@ def zero_episode_dataset_from_spec(rlds_spec: RLDS_SPEC):
     }
 
     if episode_without_steps_spec:
-        episodes_dataset = transformations.zero_dataset_like(
-            tf.data.DatasetSpec(episode_without_steps_spec))
+        episodes_dataset = transformations.zero_dataset_like(tf.data.DatasetSpec(episode_without_steps_spec))
     else:
         episodes_dataset = tf.data.Dataset.from_tensors({'fake': ''})
 
@@ -364,10 +363,8 @@ def create_reverb_table_signature(table_name: str, steps_dataset_spec,
     return reverb_table_spec
 
 
-def create_structured_writer_config(table_name: str,
-                                    pattern: reverb.structured_writer.Pattern) -> Any:
-    config = reverb.structured_writer.create_config(
-        pattern=pattern, table=table_name, conditions=[])
+def create_structured_writer_config(table_name: str, pattern: reverb.structured_writer.Pattern) -> Any:
+    config = reverb.structured_writer.create_config(pattern=pattern, table=table_name, conditions=[])
     return config
 
 
@@ -398,7 +395,7 @@ def tf_to_torch(tf_tensor):
 
 def build_dataset(dataset_name, builder_dir, trajectory_length):
     dataset_builder = tfds.builder_from_directory(builder_dir=builder_dir)
-    dataset_builder_episodic_dataset = dataset_builder.as_dataset(split='train[:5]')
+    dataset_builder_episodic_dataset = dataset_builder.as_dataset(split='train')
 
     dataset_rlds_spec = RLDSSpec(
         observation_info=dataset_builder.info.features['steps']['observation'],
@@ -420,7 +417,7 @@ def build_dataset(dataset_name, builder_dir, trajectory_length):
     # Create trajectory datasets for the two normalized representations:
     trajectory_dataset = dataset_trajectory_transform.transform_episodic_rlds_dataset(dataset_builder_episodic_dataset)
 
-    trajectory_dataset = trajectory_dataset.shuffle(int(2))  # set shuffle buffer size
+    trajectory_dataset = trajectory_dataset.shuffle(int(1e6))  # set shuffle buffer size
     trajectory_dataset = trajectory_dataset.repeat()  # ensure that data never runs out
     return trajectory_dataset, dataset_trajectory_transform
 
