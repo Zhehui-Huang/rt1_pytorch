@@ -1,5 +1,8 @@
 import tensorflow as tf
 
+TARGET_WIDTH = 160
+TARGET_HEIGHT = 128
+
 
 def jaco_step_map_fn(step):
     # Resize to be compatible with robo_net trajectory
@@ -8,7 +11,7 @@ def jaco_step_map_fn(step):
     transformed_step['observation'] = {}
 
     transformed_step['observation']['image'] = tf.cast(tf.image.resize_with_pad(
-        step['observation']['image'], target_width=320, target_height=256), tf.uint8)
+        step['observation']['image'], target_width=TARGET_WIDTH, target_height=TARGET_HEIGHT), tf.uint8)
     transformed_step['observation']['image'] = tf.transpose(transformed_step['observation']['image'], [2, 0, 1])
 
     transformed_step['observation']['natural_language_embedding'] = step['observation']['natural_language_embedding']
@@ -32,7 +35,7 @@ def berkeley_cable_routing_step_map_fn(step):
     # Observations
     transformed_step['observation'] = {}
     transformed_step['observation']['image'] = tf.cast(tf.image.resize_with_pad(
-        step['observation']['image'], target_width=320, target_height=256), tf.uint8)
+        step['observation']['image'], target_width=TARGET_WIDTH, target_height=TARGET_HEIGHT), tf.uint8)
     transformed_step['observation']['image'] = tf.transpose(transformed_step['observation']['image'], [2, 0, 1])
     transformed_step['observation']['natural_language_embedding'] = step['observation']['natural_language_embedding']
     # Actions
@@ -54,7 +57,7 @@ def bridge_step_map_fn(step):
     transformed_step['observation'] = {}
 
     transformed_step['observation']['image'] = tf.cast(tf.image.resize_with_pad(
-        step['observation']['image'], target_width=320, target_height=256), tf.uint8)
+        step['observation']['image'], target_width=TARGET_WIDTH, target_height=TARGET_HEIGHT), tf.uint8)
     transformed_step['observation']['image'] = tf.transpose(transformed_step['observation']['image'], [2, 0, 1])
 
     transformed_step['observation']['natural_language_embedding'] = step['observation']['natural_language_embedding']
@@ -79,7 +82,7 @@ def toto_step_map_fn(step):
     transformed_step['observation'] = {}
 
     transformed_step['observation']['image'] = tf.cast(tf.image.resize_with_pad(
-        step['observation']['image'], target_width=320, target_height=256), tf.uint8)
+        step['observation']['image'], target_width=TARGET_WIDTH, target_height=TARGET_HEIGHT), tf.uint8)
     transformed_step['observation']['image'] = tf.transpose(transformed_step['observation']['image'], [2, 0, 1])
 
     transformed_step['observation']['natural_language_embedding'] = step['observation']['natural_language_embedding']

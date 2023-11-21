@@ -27,7 +27,7 @@ class CombinedDataset(Dataset):
         self.combined_dataset_it = iter(combined_dataset)
 
     def __len__(self):
-        return int(1e8)
+        return int(2e6)
 
     def __getitem__(self, idx):
         example = next(self.combined_dataset_it)

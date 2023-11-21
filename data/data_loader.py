@@ -417,7 +417,7 @@ def build_dataset(dataset_name, builder_dir, trajectory_length):
     # Create trajectory datasets for the two normalized representations:
     trajectory_dataset = dataset_trajectory_transform.transform_episodic_rlds_dataset(dataset_builder_episodic_dataset)
 
-    trajectory_dataset = trajectory_dataset.shuffle(int(1e6))  # set shuffle buffer size
+    trajectory_dataset = trajectory_dataset.shuffle(int(1e5))  # set shuffle buffer size
     trajectory_dataset = trajectory_dataset.repeat()  # ensure that data never runs out
     return trajectory_dataset, dataset_trajectory_transform
 

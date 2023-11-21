@@ -449,6 +449,7 @@ def init_distributed_mode(args):
         args["gpu"] = 0
         args["rank"] = 0
         args["world_size"] = 1
+        return args
     else:
         print("Not using distributed mode")
         args["distributed"] = False
