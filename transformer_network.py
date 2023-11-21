@@ -397,7 +397,7 @@ class TransformerNetwork(nn.Module):
         # This removes autoregressive conditioning on actions because it did not benefit performance and slowed
         # inference.
         # action_tokens = torch.zeros_like(action_tokens.unsqueeze(-1).repeat(action_tokens.shape[0], action_tokens.shape[1], 1, context_image_tokens.shape[3]))
-        action_tokens = torch.zeros((context_image_tokens.shape[0], context_image_tokens.shape[1], action_tokens.shape[2], context_image_tokens.shape[3]))
+        action_tokens = torch.zeros((context_image_tokens.shape[0], context_image_tokens.shape[1], action_tokens.shape[2], context_image_tokens.shape[3]), device=context_image_tokens.device)
 
         # assemble token sequence
         input_token_sequence = torch.concat((context_image_tokens, action_tokens), dim=2)
