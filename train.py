@@ -164,10 +164,7 @@ class Trainer:
         epoch_start = checkpoint["epoch"] if self.args["resume"] else 0
         for e in range(epoch_start, self.args["epochs"]):
             network.train()
-            with tqdm(
-                train_dataloader, dynamic_ncols=True, desc="train"
-            ) as tqdmDataLoader:
-                # for _, (obs, action) in enumerate(tqdmDataLoader):
+            with tqdm(train_dataloader, dynamic_ncols=True, desc="train") as tqdmDataLoader:
                 for _, item in enumerate(tqdmDataLoader):
                     # Perform training steps
                     obs = item['observation']
@@ -233,7 +230,8 @@ class Trainer:
                     )
 
             # Perform validation at specified intervals
-            if (e + 1) % self.args["val_interval"] == 0:
+            # if (e + 1) % self.args["val_interval"] == 0:
+            if True:
                 checkpoint_filename = os.path.join(
                     self.checkpoint_dir, str(e) + "-checkpoint.pth"
                 )

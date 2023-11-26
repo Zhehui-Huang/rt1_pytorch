@@ -5,7 +5,7 @@
     "time_sequence_length": 2,
     "lr": 0.0001,
     "batch_size": 3,
-    "epochs": 5000,
+    "epochs": 50,
     "resume": false,
     "resume_from_checkpoint": "",
     "predicting_next_ts": true,
