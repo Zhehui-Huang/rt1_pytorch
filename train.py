@@ -244,6 +244,7 @@ class Trainer:
                     "epoch": e,
                 }
                 utils.save_on_master(checkpoint, checkpoint_filename)
+                print('Save checkpoint')
                 if self.args["distributed"]:
                     # Barrier synchronization for distributed training
                     print(
